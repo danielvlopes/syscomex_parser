@@ -8,11 +8,11 @@ class Syscomex::RowParser
   end
 
   def type
-    @extraction_details[:type]
+    @extraction_details[0]
   end
 
   def offset
-    @extraction_details[:size]
+    @extraction_details[1]
   end
   
   def bytesize

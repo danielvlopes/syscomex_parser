@@ -1,30 +1,23 @@
-class Syscomex::Visit
+class Syscomex::Visit < Syscomex::Element
 
-  attr_accessor :attributes, :row
-
-  def initialize(row)
-    @attributes = {}
-    @row = row
-
-    extract_type_and_line_ending_from_row!
-    extract_attributes_from_row
-  end
-
-private
-
-  def extract_type_and_line_ending_from_row!
-    @row = @row[1..-2]
-  end
-
-  def extract_attributes_from_row
-    current_position = 0
-    temp_row = @row
-
-    Syscomex::Layouts.visit.each do |attribute, value|
-      row_parser = Syscomex::RowParser.new(temp_row, value)
-      extraction, temp_row = row_parser.extract
-      attributes[attribute.to_sym] = extraction
-    end
+  def self.layout
+    @layout ||= {
+      visit_number: [ :numeric, 11 ],
+      vessel_imo_code: [ :text, 10 ],
+      vessel_name: [ :text, 55 ],
+      estimated_berthing_time: [ :date, 8 ],
+      realized_berthing_time: [ :date, 8 ],
+      blocked: [ :boolean, 1],
+      blocking_reason_code_1: [ :text, 2 ],
+      blocking_reason_desc_1: [ :text, 60 ],
+      blocking_reason_code_2: [ :text, 2 ],
+      blocking_reason_desc_2: [ :text, 60 ],
+      blocking_reason_code_3: [ :text, 2 ],
+      blocking_reason_desc_3: [ :text, 60 ],
+      blocking_reason_code_4: [ :text, 2 ],
+      blocking_reason_desc_4: [ :text, 60 ],
+      travel_number: [:text, 10 ]
+    }
   end
 
 end
