@@ -1,22 +1,31 @@
-module Syscomex::Layouts
+require "yaml"
 
-  VISIT = {
-    visit_number: "N11",
-    vessel_imo_code: "A10",
-    vessel_name: "A55",
-    estimated_berthing_time: "N08",
-    realized_berthing_time: "N08",
-    blocked: "A01",
-    blocking_reason_code_1: "A02",
-    blocking_reason_desc_1: "A06",
-    blocking_reason_code_2: "A02",
-    blocking_reason_desc_2: "A06",
-    blocking_reason_code_3: "A02",
-    blocking_reason_desc_3: "A06",
-    blocking_reason_code_4: "A02",
-    blocking_reason_desc_4: "A06",
-    travel_number: "A10"
-  }
+class Syscomex::Layouts
+
+  def self.visit
+    layout_for :visit
+  end
+  
+  private
+
+  def self.layout_for(element)
+    @layouts ||= begin 
+      result = YAML::load_file("#{File.dirname(__FILE__)}/layouts.yml")
+      result = symbolize_keys(result)
+    end
+
+    @layouts[element]
+  end
+  
+  def self.symbolize_keys(hash)
+    hash.inject({}) do |result, (key, value)|
+      new_key = key.is_a?(String) ? key.to_sym : key
+      new_value = value.is_a?(Hash) ? symbolize_keys(value) : value
+      
+      result[new_key] = new_value
+      result
+    end
+  end
 
   MANIFEST        = %w(N01 N11 A13 A05 A60 A05 A60 A01 A02 A60 A02 A60 A02 A60 A02 A60 A14 A60 A14 A60 A02 A60 A01)
   EMPTY_CONTAINER = %w(N01 A13 A11 A02 A04 A60 A01)

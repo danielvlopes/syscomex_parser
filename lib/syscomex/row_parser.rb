@@ -1,3 +1,5 @@
+require "date"
+
 class Syscomex::RowParser
 
   def initialize(row, extraction_details)
@@ -6,11 +8,11 @@ class Syscomex::RowParser
   end
 
   def type
-    @extraction_details[0]
+    @extraction_details[:type]
   end
 
   def offset
-    @extraction_details[1..-1].to_i
+    @extraction_details[:size]
   end
   
   def bytesize
@@ -18,10 +20,7 @@ class Syscomex::RowParser
   end
 
   def extract
-    case type
-      when "N" then extract_numeric
-      when "A" then extract_text
-    end
+    send "extract_#{type}"
   end
 
 private
@@ -43,6 +42,17 @@ private
     extracted, rest = slice_by_offset
 
     return extracted.to_i, rest
+  end
+  
+  def extract_boolean
+    extracted, rest = slice_by_offset
+
+    return (extracted == "S"), rest
+  end
+
+  def extract_date
+    extracted, rest = slice_by_offset
+    return Date.parse(extracted), rest
   end
 
 end

@@ -1,0 +1,46 @@
+visit:
+  visit_number:
+    type: numeric
+    size: 11
+  vessel_imo_code:
+    type: text
+    size: 10
+  vessel_name:
+    type: text
+    size: 55
+  estimated_berthing_time:
+    type: date
+    size: 8
+  realized_berthing_time:
+    type: date
+    size: 8
+  blocked:
+    type: boolean
+    size: 1
+  blocking_reason_code_1:
+    type: text
+    size: 2
+  blocking_reason_desc_1:
+    type: text
+    size: 6
+  blocking_reason_code_2:
+    type: text
+    size: 2
+  blocking_reason_desc_2:
+    type: text
+    size: 6
+  blocking_reason_code_3:
+    type: text
+    size: 2
+  blocking_reason_desc_3:
+    type: text
+    size: 6
+  blocking_reason_code_4:
+    type: text
+    size: 2
+  blocking_reason_desc_4:
+    type: text
+    size: 6
+  travel_number:
+    type: text
+    size: 10

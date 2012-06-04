@@ -20,8 +20,8 @@ private
     current_position = 0
     temp_row = @row
 
-    Syscomex::Layouts::VISIT.each do |attribute, type|
-      row_parser = Syscomex::RowParser.new(temp_row, type)
+    Syscomex::Layouts.visit.each do |attribute, value|
+      row_parser = Syscomex::RowParser.new(temp_row, value)
       extraction, temp_row = row_parser.extract
       attributes[attribute.to_sym] = extraction
     end
