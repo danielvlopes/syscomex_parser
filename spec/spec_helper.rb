@@ -1,2 +1,2 @@
 require 'rspec/autorun'
-require "#{File.dirname(__FILE__)}/../lib/syscomex.rb"
+require "#{File.dirname(__FILE__)}/../lib/siscomex.rb"
