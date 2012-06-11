@@ -35,9 +35,9 @@ describe Siscomex::Manifest do
       blocking_reason_desc_3: "",
       blocking_reason_code_4: "",
       blocking_reason_desc_4: "",
-      agency_cnpj: "32082489001237",
+      agency_registration_code: "32082489001237",
       agency_name: "OCEANUS AGENCIA MARITIMA SA",
-      line_operator_cnpj: "NL000268",
+      line_operator_registration_code: "NL000268",
       line_operator_name: "BIGLIFT SHIPPING B.V.",
       type_of_traffic_code: "05",
       type_of_traffic_description: "LONGO CURSO IMPORTACAO"

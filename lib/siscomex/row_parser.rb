@@ -45,6 +45,11 @@ private
 
     return extracted.to_i, rest
   end
+  
+  def extract_float
+    extracted, rest = slice_by_offset
+    return (extracted.to_i * 0.001), rest
+  end
 
   def extract_boolean
     extracted, rest = slice_by_offset

@@ -4,8 +4,8 @@ require "spec_helper"
 
 describe Siscomex::RowParser do
 
-  let(:data_sample) { 
-    "12120509148320600011GCNU40284414042G0GENERAL PURPOSE(40'/8'6) - DRY 40'" 
+  let(:data_sample) {
+    "12120509148320600011GCNU40284414042G0GENERAL PURPOSE(40'/8'6) - DRY 40'"
   }
 
   context "syscomex spec based rows" do
@@ -20,6 +20,13 @@ describe Siscomex::RowParser do
       extracted, rest = Siscomex::RowParser.new(data_sample, [:numeric, 5]).extract
       extracted.should == 12120
       rest.should == "509148320600011GCNU40284414042G0GENERAL PURPOSE(40'/8'6) - DRY 40'"
+    end
+
+    it 'extracts numeric float portions with three decimal places' do
+      data_sample = "1232132321323 something"
+      extracted, rest = Siscomex::RowParser.new(data_sample, [:float, 13]).extract
+      extracted.should == 1232132321.323
+      rest.should == " something"
     end
 
     context "extracting boolean" do

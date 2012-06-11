@@ -19,9 +19,9 @@ class Siscomex::Manifest < Siscomex::Element
       blocking_reason_desc_3: [:text, 60],
       blocking_reason_code_4: [:text, 2],
       blocking_reason_desc_4: [:text, 60],
-      agency_cnpj: [:text, 14],
+      agency_registration_code: [:text, 14],
       agency_name: [:text, 60],
-      line_operator_cnpj: [:text, 14],
+      line_operator_registration_code: [:text, 14],
       line_operator_name: [:text, 60],
       type_of_traffic_code: [:text, 2],
       type_of_traffic_description: [:text, 60]
